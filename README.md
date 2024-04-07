@@ -37,7 +37,7 @@ unzip model_backup.zip -d .
 ### Lexical datasets
 Before anything, you might want to create datasets in lexicons instead of in ids. For example, for the train file of icews14:
 ```
-python .\data_utils\id_words.py --file_to_convert ./data/icews14/train.txt --path_output ./data/processed_new/icews14/train.txt --dataset icews14 --period 24
+python ./data_utils/id_words.py --file_to_convert ./data/icews14/train.txt --path_output ./data/processed_new/icews14/train.txt --dataset icews14 --period 24
 ```
 Rules learning parameters:
 - **-f** **file_to_convert**, input path to a certain file.
@@ -75,7 +75,7 @@ python3 ./data_utils/retrieve.py --name_of_rules_file name_rules.json --dataset 
 ```
 An example for icews18 would be like:
 ```
-python .\data_utils\retrieve.py --name_of_rules_file 060723022344_r[1]_n200_exp_s12_rules.json --dataset icews18
+python ./data_utils/retrieve.py --name_of_rules_file 060723022344_r[1]_n200_exp_s12_rules.json --dataset icews18
 ```
 By default you will create these following files:
 - data/processed_new/{dataset}/[train, valid, test]/history_facts/history_facts_{dataset}.txt [A]
@@ -88,7 +88,7 @@ python3 ./data_utils/create_json_train.py --dir_of_trainset 'the_full_trainset_t
 ```
 An example for icews18 would be like:
 ```
-python .\data_utils\create_json_train.py --dir_of_trainset './data/processed_new/icews18/train/history_facts/history_facts_icews18.txt' --dir_of_answers './data/processed_new/icews18/train/test_answers/test_answers_icews18.txt' --dir_of_entities2id './data/icews18/entity2id.json' --path_save './data/processed_new/icews18/train'
+python ./data_utils/create_json_train.py --dir_of_trainset './data/processed_new/icews18/train/history_facts/history_facts_icews18.txt' --dir_of_answers './data/processed_new/icews18/train/test_answers/test_answers_icews18.txt' --dir_of_entities2id './data/icews18/entity2id.json' --path_save './data/processed_new/icews18/train'
 ```
 
 ### Training
