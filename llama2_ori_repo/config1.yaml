@@ -1,0 +1,10 @@
+ckpt_dir: '/mnt/data/liao/Llama2/models/llama-2-7b'
+tokenizer_path: '/mnt/data/liao/Llama2/tokenizer.model'
+max_seq_len: 4096
+max_batch_size: 4 
+input_file: '/mnt/fast-local/data/GDELT_full/uniform_sampling_4000/history_facts_TLogic-3a_GDELT_uniform_sampling.txt'
+output_file: '/mnt/fast-local/data/GDELT_full/uniform_sampling_4000/prediction_GDELT_nip_TL-3_llama2_uniform_sampling.txt'
+test_ans_file:  '/mnt/fast-local/data/GDELT_full/uniform_sampling_4000/test_uniform_sampling.txt'
+begin: 0
+num_infer: 4000
+last_metric: ''
