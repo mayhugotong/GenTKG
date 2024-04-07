@@ -25,11 +25,14 @@ if __name__ == "__main__":
     path_save = "./data/processed_new/"+type_dataset+"/"
     if not os.path.exists(path_save):
             os.makedirs(path_save)
-    
+        
+    period = 1
     if type_dataset == "icews18":
         num_relations = 256 #for ICEWS18 #set before np.array
+        period = 24
     elif type_dataset == "icews14":
         num_relations = 230
+        period = 24
     elif type_dataset == "GDELT":
         num_relations = 238 #GDELT and
     else:
@@ -51,7 +54,7 @@ if __name__ == "__main__":
         entities = read_json(path_workspace+'entity2id.json')
         times_id = read_json(path_workspace+'ts2id.json')
         
-        test_ans = convert_dataset(test_ans, path_workspace)
+        test_ans = convert_dataset(test_ans, path_workspace, period=period)
         
         chains = read_json(path_out_tl+name_rules)
         rel_keys = list(relations.keys())
