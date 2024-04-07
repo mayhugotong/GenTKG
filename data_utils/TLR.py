@@ -47,6 +47,7 @@ class Retriever:
         s0 = set(idx0)
         idx = list(s0 & s_t)
         idx.sort(reverse=True)
+        time = self.times_id[time]
         return time, sub, rel, idx
     
     def build_bs(self):
@@ -76,7 +77,7 @@ class Retriever:
     def tlogic_prepro(self, i):
         test_sub, test_rel, _, test_time, _ = self.test[i].strip().split("\t")
         #First of all, there must be a time premise of retrieve s_t
-        # #Here we need to find out the idx of test in all_facts so that it can be removed
+        #Here we need to find out the idx of test in all_facts so that it can be removed
         idx_test = len(self.all_facts)- (len(self.test)-1) + i -1
         # #The major premise is that retrieval must be performed from those ranges earlier than test_time
         idx_t = np.where(self.col_time < test_time)[0] 
@@ -156,9 +157,9 @@ class Retriever:
         return test_idx, test_text
 
     def collect_hist(self, i, facts, num_facts):
-        circle = 1
+        period = 1
         if self.dataset == "icews14" or self.dataset == "icews18":
-            circle = 24
+            period = 24
         histories = []
         facts = facts[0:num_facts] # 
         facts.reverse() #Replace the order so that the last output is the one closest in time.
@@ -170,16 +171,17 @@ class Retriever:
             
             obj_in_word = fact[2]
             id_obj = self.entities[obj_in_word]
-            histories= histories+ [str(int(time_in_id/circle))
+            histories= histories+ [str(int(time_in_id)/int(period))
                     +': [' + sub_in_word +', ' + rel_in_word +', ' 
                     + str(id_obj)+'.'+ obj_in_word +'] \n']
         return histories
 
     def build_history_query(self, time, test_sub, test_rel, histories=''):
-        circle = 1
+        period = 1
         if self.dataset == "icews14" or self.dataset == "icews18":
-            circle = 24
-        return [''.join(histories)  + str(int(time/circle))+': ['+ test_sub +', '+ test_rel+',\n'#times id[time]
+            period = 24
+        time_in_id = self.times_id[time]
+        return [''.join(histories)  + str(int(time_in_id)/int(period))+': ['+ test_sub +', '+ test_rel+',\n'#times id[time]
                 ]
     
     def call_function(self, func_name):
