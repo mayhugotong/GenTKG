@@ -1,7 +1,7 @@
 # Llama2-LoRA-Trainer
 
 ## Introduction
-This is the official implementation repository of NAACL findings paper, [GenTKG: Generative Forecasting on Temporal Knowledge Graph](https://arxiv.org/abs/2310.07793)
+This is the official implementation repository of NAACL findings paper, [GenTKG: Generative Forecasting on Temporal Knowledge Graph with Large Language Models](https://arxiv.org/abs/2310.07793)
 
 This work is about fine-tuning the large language model llama2-7B with [peft](https://github.com/huggingface/peft) and using it for temporal knowledge graph (tkg) forecasting. The training and evaluation data used are obtained by TLR retreival, and the FIT trained model weights are stored on [Google Drive](https://drive.google.com/drive/folders/1pZwppUnjLAfdzu30lKaxZGM3AC-x5We-?usp=drive_link).
 
