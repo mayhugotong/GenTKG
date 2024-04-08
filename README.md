@@ -1,7 +1,7 @@
 # Llama2-LoRA-Trainer
 
 ## Introduction
-This is the official impletation repository of NAACL findings paper, [GenTKG: Generative Forecasting on Temporal Knowledge Graph](https://arxiv.org/abs/2310.07793)
+This is the official implementation repository of NAACL findings paper, [GenTKG: Generative Forecasting on Temporal Knowledge Graph](https://arxiv.org/abs/2310.07793)
 
 This work is about fine-tuning the large language model llama2-7B with [peft](https://github.com/huggingface/peft) and using it for temporal knowledge graph (tkg) forecasting. The training and evaluation data used are obtained by TLR retreival, and the FIT trained model weights are stored on [Google Drive](https://drive.google.com/drive/folders/1pZwppUnjLAfdzu30lKaxZGM3AC-x5We-?usp=drive_link).
 
@@ -11,8 +11,8 @@ This work is about fine-tuning the large language model llama2-7B with [peft](ht
 Download the codes and go to the folder:
 
 ```javascript
-git clone https://github.com/mayhugotong/TKGForcaster.git
-cd TKGForcaster
+git clone https://github.com/mayhugotong/GenTKG.git
+cd GenTKG
 ```
 Create an environment:
 ```
@@ -68,9 +68,9 @@ You will get a rule bank file similar to "060723022344_r[1,2,3]_n200_exp_s12_rul
 
 ### History retrieving
 
-Find the file name of rule bank json (in ./output) and run from the folder TKGForcaster:
+Find the file name of rule bank json (in ./output) and run from the folder GenTKG:
 ```
-cd TKGForcaster
+cd GenTKG
 python3 ./data_utils/retrieve.py --name_of_rules_file name_rules.json --dataset icews14
 ```
 An example for icews18 would be like:
