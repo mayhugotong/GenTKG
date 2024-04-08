@@ -277,10 +277,11 @@ query_answer3
 ## Citation
 
 Please cite our work as follow if you find our work helpful.
-
+```
 @article{liao2023gentkg,
   title={GenTKG: Generative Forecasting on Temporal Knowledge Graph},
   author={Liao, Ruotong and Jia, Xu and Ma, Yunpu and Yangzhe Li and Tresp, Volker},
   journal={arXiv preprint arXiv:2310.07793},
   year={2023}
 }
+```
