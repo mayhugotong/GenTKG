@@ -1,4 +1,4 @@
-# Llama2-LoRA-Trainer
+# GenTKG: Generative Forecasting on Temporal Knowledge Graph with Large Language Models
 
 ## Introduction
 This is the official implementation repository of NAACL findings paper, [GenTKG: Generative Forecasting on Temporal Knowledge Graph with Large Language Models](https://arxiv.org/abs/2310.07793)
