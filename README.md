@@ -28,7 +28,7 @@ You can use gdown to do it:
 pip install gdown
 gdown https://drive.google.com/file/d/1C63Ugg_Xc1MGgeToiYNM0X4i35CJUEWA/view?usp=sharing
 unzip data.zip -d .
-gdown https://drive.google.com/file/d/1pZcUDot9kmcjP2a4d10QVo86WGl3Bj9t/view?usp=sharing
+gdown https://drive.google.com/file/d/1mpzlfKLuh3cHvox8UpP1RkPUHKeN4_eL/view?usp=sharing
 unzip model.zip -d .
 gdown https://drive.google.com/file/d/145avybZXtlTrshVBJ22B6KSJPnK5nQVS/view?usp=sharing
 unzip model_backup.zip -d .
