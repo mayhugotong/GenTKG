@@ -143,19 +143,19 @@ python3 main.py --LORA_CHECKPOINT_DIR "./model/icews14" --output_file "./results
 ```
 Testing parameters (in eval_utils.py):
 
-- **LORA_CHECKPOINT_DIR**, path of model checkpoint.
+- **LORA_CHECKPOINT_DIR**, the path of model checkpoint.
 - **output_file**, your output directory.
 - **input_file**, path of history_facts file.
 - **test_ans_file**, path of test_answers file.
 
 If you want to begin from a certain i-th question (like resuming):
-- **begin**, The number of the checkpoint you will save (Excluding the final one).
-- **last_metric**, path for the saved metric file, it will read the results from it.
+- **begin**, the number of the checkpoint you will save (Including the final one).
+- **last_metric**, the path for the saved metric file. It will read the results from it.
 
 ## File structure
 ### Repository
 
-The repository contains codes for both tlogic retrieving and finetuning llama2 and inference. Learn rule banks are also provided here:
+The repository contains codes for both TLR and few-shot instruction-tuning llama2 and inference. Learned rule banks are also provided here:
 ```
 Root
 |--data_utils/
@@ -179,7 +179,7 @@ Root
 ```
 ### Datasets
 
-The structure should be similar like this:
+The structure should be similar to this:
 ```
 Datasets
 |--processed/
@@ -202,7 +202,7 @@ Datasets
 			|--test_ans_icews18.csv
 			|--test_ans_GDELT.txt
 			|--test_ans_YAGO.txt
-|--original/ (original datasets mainly for rule based models)
+|--original/ (original datasets mainly for rule-based models)
 	|--icews14/
 		|--all_facts.txt
 		|--train.txt
@@ -278,10 +278,11 @@ query_answer3
 
 Please cite our work as follow if you find our work helpful.
 ```
-@article{liao2023gentkg,
-  title={GenTKG: Generative Forecasting on Temporal Knowledge Graph},
-  author={Liao, Ruotong and Jia, Xu and Ma, Yunpu and Yangzhe Li and Tresp, Volker},
-  journal={arXiv preprint arXiv:2310.07793},
-  year={2023}
+@inproceedings{liao2024gentkg,
+  title={GenTKG: Generative Forecasting on Temporal Knowledge Graph with Large Language Models},
+  author={Liao, Ruotong and Jia, Xu and Li, Yangzhe and Ma, Yunpu and Tresp, Volker},
+  booktitle={Findings of the Association for Computational Linguistics: NAACL 2024},
+  pages={4303--4317},
+  year={2024}
 }
 ```
