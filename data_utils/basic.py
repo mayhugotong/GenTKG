@@ -72,7 +72,8 @@ def just_read_txt(path_txt):
 
 def read_txt_as_list(path_txt):
     with open(path_txt, 'r', encoding='utf-8-sig') as file:
-        data = file.readlines()
+        data = [line.rstrip() for line in file]
+        # data = file.readlines()
     return data
 
 def read_txt_as_index_dict(path_txt, divider='\t'):

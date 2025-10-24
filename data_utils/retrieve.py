@@ -18,8 +18,8 @@ if __name__ == "__main__":
     type_dataset = parsed["dataset"]
     name_rules = parsed["name_of_rules_file"]
     
-    path_workspace = "./data/"+type_dataset+"/" #Icew s14 /icews14
-    path_out_tl = "./output/"+type_dataset+"/"
+    path_workspace = "./data/processed_new/"+type_dataset+"/" #Icew s14 /icews14
+    path_out_tl = "./data_utils/output/processed_new/"+type_dataset+"/"
     print(path_out_tl)
     
     path_save = "./data/processed_new/"+type_dataset+"/"
@@ -32,14 +32,29 @@ if __name__ == "__main__":
         period = 24
     elif type_dataset == "icews14":
         num_relations = 230
-        period = 24
+        #period = 24 Another version of ICEWS14 with period 1
     elif type_dataset == "GDELT":
         num_relations = 238 #GDELT and
     else:
         num_relations = 24 # YAGO
         
     test_ans = []
-    
+    all_facts_path = path_workspace + "all_facts.txt"
+    if os.path.exists(all_facts_path):
+        print("Reading existing all_facts.txt ...")
+        all_facts = read_txt_as_list(all_facts_path)
+    else:
+        print("Generating all_facts.txt ...")
+        all_facts = []
+        for split in ['train', 'valid', 'test']:
+            lines = read_txt_as_list(path_workspace + split + '.txt')
+            # lines = convert_dataset(lines, path_workspace, period=period, type_file='.json')
+            all_facts += lines
+        with open(all_facts_path, "w", encoding="utf-8") as f:
+            for line in all_facts:
+                f.write(line)
+        print("Saved new all_facts.txt")
+        
     #open files:
         
     li_files = ['train','valid','test']#  ['train','valid','test'] or  ['test'] when only test set is needed
@@ -49,20 +64,16 @@ if __name__ == "__main__":
         dir_rules = glob.glob(path_out_tl+'*rules.json')[0] if name_rules=="" else path_out_tl+name_rules
         print("files", files)
         test_ans = read_txt_as_list(path_workspace+files+'.txt')
-        
+        # test_ans = test_ans[-100:]
         relations = read_json(path_workspace+'relation2id.json')
         entities = read_json(path_workspace+'entity2id.json')
         times_id = read_json(path_workspace+'ts2id.json')
-        
-        test_ans = convert_dataset(test_ans, path_workspace, period=period)
+        # test_ans = convert_dataset(test_ans, path_workspace, period=period, type_file='.json')
         
         chains = read_json(path_out_tl+name_rules)
         rel_keys = list(relations.keys())
         ent_idx = list(entities.keys()) # [0, 1, ...]
         times_id_keys = list(times_id.keys())
-        all_facts = []
-        with open(path_workspace+"all_facts.txt", "r", encoding='utf-8') as f:
-            all_facts = f.readlines()
         
         rtr = Retriever(test_ans, all_facts, entities, relations, times_id, num_relations, chains, rel_keys, dataset=type_dataset)
         test_idx, test_text = rtr.get_output()

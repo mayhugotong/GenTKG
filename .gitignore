@@ -1,1 +1,8 @@
 __pycache__/
+
+output/
+data/
+data_utils/output/
+.vscode/
+14_TLogic-3a_simp.py
+18_TLogic-3a_50facts_no_instruction.py
