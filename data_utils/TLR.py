@@ -2,7 +2,7 @@ import numpy as np
 from basic import flip_dict
 import time as ti
 from tqdm import tqdm
-
+#use lexicon datasets
 class Retriever:
     def __init__(self, 
                  test, all_facts, 
@@ -75,7 +75,8 @@ class Retriever:
         return test_idx, test_text
     
     def tlogic_prepro(self, i):
-        test_sub, test_rel, _, test_time, _ = self.test[i].strip().split("\t")
+        # test_sub, test_rel, _, test_time, _ = self.test[i].strip().split("\t") for dataset with extra column
+        test_sub, test_rel, _, test_time = self.test[i].strip().split("\t")
         #First of all, there must be a time premise of retrieve s_t
         #Here we need to find out the idx of test in all_facts so that it can be removed
         idx_test = len(self.all_facts)- (len(self.test)-1) + i -1
@@ -104,7 +105,7 @@ class Retriever:
 
             if not str(head_rel) in self.chains: #If the test relation has no chain, nothing will be done.
                 #l = ['Just repeat "No Chains."\n']
-                history_query = [str(time)+': ['+ test_sub +', '+ test_rel+',\n']
+                history_query = [str(int(time))+': ['+ test_sub +', '+ test_rel+',\n']
                 test_idx.append([]) #At this time idx is a blank line
                 test_text.append(history_query)
                 #print(i, 'no chain in this line')
@@ -171,7 +172,7 @@ class Retriever:
             
             obj_in_word = fact[2]
             id_obj = self.entities[obj_in_word]
-            histories= histories+ [str(int(time_in_id)/int(period))
+            histories= histories+ [str(int(time_in_id/period))
                     +': [' + sub_in_word +', ' + rel_in_word +', ' 
                     + str(id_obj)+'.'+ obj_in_word +'] \n']
         return histories
@@ -180,8 +181,8 @@ class Retriever:
         period = 1
         if self.dataset == "icews14" or self.dataset == "icews18":
             period = 24
-        time_in_id = self.times_id[time]
-        return [''.join(histories)  + str(int(time_in_id)/int(period))+': ['+ test_sub +', '+ test_rel+',\n'#times id[time]
+        # time_in_id = self.times_id[time]
+        return [''.join(histories)  + str(int(time/period))+': ['+ test_sub +', '+ test_rel+',\n'#times id[time]
                 ]
     
     def call_function(self, func_name):

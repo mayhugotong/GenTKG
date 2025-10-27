@@ -1,4 +1,7 @@
 # GenTKG: Generative Forecasting on Temporal Knowledge Graph with Large Language Models
+## Update
+
+1.1: Minor fix for data reading: avoid messy id dataset converting.
 
 ## Introduction
 This is the official implementation repository of NAACL findings paper, [GenTKG: Generative Forecasting on Temporal Knowledge Graph with Large Language Models](https://arxiv.org/abs/2310.07793)
