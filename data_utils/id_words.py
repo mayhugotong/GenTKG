@@ -1,5 +1,5 @@
 import argparse
-from basic import read_json, flip_dict, str_dict, read_txt_as_list, write_txt, create_folder_for_file
+from basic import str_dict, read_txt_as_list, write_txt, create_folder_for_file
 import json
 def convert(str_in, dict_in):
     return dict_in[str_in]
